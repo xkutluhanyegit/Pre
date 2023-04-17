@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public partial class Personelovertime
+    public partial class Personelovertime:IEntity
     {
         public int Id { get; set; }
         public string? Sicilno { get; set; }

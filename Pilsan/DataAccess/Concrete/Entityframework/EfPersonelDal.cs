@@ -69,7 +69,8 @@ namespace DataAccess.Concrete.Entityframework
                                  ShiftName = personelShiftsID.Shiftname,
                                  OvertimeID = personelOvertimeID.Overtimeid,
                                  OvertimeName = personelOvertimeID.Overtimename,
-                                 WeekofYear = personelShifts.WeekOfYear
+                                 WeekofYear = personelShifts.WeekOfYear,
+                                 OvertimeDay = personelOvertimeList.Overtimeday
 
                              };
                 return result.ToList();

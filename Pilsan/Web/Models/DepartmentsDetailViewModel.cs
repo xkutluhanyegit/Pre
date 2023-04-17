@@ -18,7 +18,15 @@ namespace Web.Models
         //Week Next Shift 
         public List<DepartmentPersonelDetailDto> GetAllWeekNextDepartmentPersonelDetailDto { get; set; }
 
+        public List<DepartmentPersonelDetailDto> GetAllWeekNextNoShiftDepartmentPersonelDetailDto{ get; set; }
+
+        public List<DepartmentPersonelDetailDto> GetAllWeekNextYesShiftDepartmentPersonelDetailDto{ get; set; }
+
+        
+
         //Today Overtime
+        public List<DepartmentPersonelDetailDto> GetAllWeekNowNoOvertimeDepartmentPersonelDetailDto{ get; set; }
+        public List<DepartmentPersonelDetailDto> GetAllWeekNowYesOvertimeDepartmentPersonelDetailDto{ get; set; }
 
     }
 }

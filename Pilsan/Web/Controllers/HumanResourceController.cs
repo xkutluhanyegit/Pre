@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Constant;
+using Entities.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -16,7 +18,7 @@ namespace Web.Controllers
         private readonly ILogger<HumanResourceController> _logger;
         private readonly IPersonelService _personelService;
 
-        public HumanResourceController(ILogger<HumanResourceController> logger,IPersonelService personelService)
+        public HumanResourceController(ILogger<HumanResourceController> logger, IPersonelService personelService)
         {
             _logger = logger;
             _personelService = personelService;
@@ -28,12 +30,73 @@ namespace Web.Controllers
             var result = _personelService.GetAllHRPersonelDetailDto(WeekofDay.weekNow);
             if (result.Success)
             {
-                return View(result.Data);
+
+                HRDepartmentsDetailViewModel h = new HRDepartmentsDetailViewModel();
+                h.GetAllHRPersonelDetailDto = _personelService.GetAllHRPersonelDetailDto(WeekofDay.weekNow).Data.ToList();
+
+                return View(h);
             }
-            else{
+            else
+            {
                 return View(result.Message);
             }
         }
+
+        [HttpGet("gelecek-vardiya-plani")]
+        public IActionResult next_week_shift(int shiftId)
+        {
+            var result = _personelService.GetAllHRPersonelDetailDto(WeekofDay.weekNext);
+            if (result.Success)
+            {
+                HRDepartmentsDetailViewModel h = new HRDepartmentsDetailViewModel();
+                h.GetAllHRPersonelDetailShiftDto = result.Data.Where(p => p.ShiftID == shiftId).ToList();
+                return View(h);
+            }
+            return View();
+        }
+
+        [HttpGet("fazla-mesai-dagilimi")]
+        public IActionResult now_overtime(int overtimeId)
+        {
+            var result = _personelService.GetAllHRPersonelDetailDto(WeekofDay.weekNow);
+            if (result.Success)
+            {
+                //Çıkış Saati
+                //8 -6
+                //16 -1
+                //18 -2
+                //20 -3
+                //22 -4
+                //24 -5
+                HRDepartmentsDetailViewModel h = new HRDepartmentsDetailViewModel();
+
+                List<HRPersonelDetailDto> list = new List<HRPersonelDetailDto>();
+
+                foreach (var item in result.Data)
+                {
+                    if (item.OvertimeID != null & item.OvertimeID == overtimeId)
+                    {
+                        list.Add(item);
+                    }
+                    else if (item.OvertimeID == null)
+                    {
+                        if (item.ShiftID != null & item.ShiftID == overtimeId & item.WeekofYear == WeekofDay.weekNow)
+                        {
+                            list.Add(item);
+                        }
+                    }
+
+                }
+
+                return View(list);
+                
+            }
+
+
+            return View();
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

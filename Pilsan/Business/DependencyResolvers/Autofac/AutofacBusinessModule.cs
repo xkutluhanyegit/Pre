@@ -19,6 +19,12 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<ShiftManager>().As<IShiftService>().SingleInstance();
             builder.RegisterType<EfShiftDal>().As<IShiftDal>().SingleInstance();
+
+            builder.RegisterType<PersonelShiftManager>().As<IPersonelShiftService>().SingleInstance();
+            builder.RegisterType<EfPersonelShiftDal>().As<IPersonelShiftDal>().SingleInstance();
+
+            builder.RegisterType<PersonelOvertimeManager>().As<IPersonelOvertimeService>().SingleInstance();
+            builder.RegisterType<EfPersonelOvertimeDal>().As<IPersonelOvertimeDal>().SingleInstance();
         }
     }
 }

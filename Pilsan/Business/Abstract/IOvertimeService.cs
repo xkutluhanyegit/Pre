@@ -7,9 +7,8 @@ using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    public interface IPersonelShiftService
+    public interface IOvertimeService
     {
-        IResult Add(Personelshift personelShift);
-        IResult Delete(Personelshift personelShift);
+        IResult Add(Overtime overtime);
     }
 }

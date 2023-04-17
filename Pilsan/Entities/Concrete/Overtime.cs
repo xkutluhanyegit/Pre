@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public partial class Overtime
+    public partial class Overtime:IEntity
     {
         public int Id { get; set; }
         public int? Overtimeid { get; set; }

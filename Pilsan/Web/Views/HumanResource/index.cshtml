@@ -1,5 +1,5 @@
 @using Core.Constant
-@model List<Entities.DTO.HRPersonelDetailDto>
+@model Web.Models.HRDepartmentsDetailViewModel
 @{
   ViewData["Title"] = "İnsan Kaynakları";
   Layout = "_Layout";
@@ -19,7 +19,7 @@
     <div class="row">
       
         <div class="col-12 col-sm-6 col-md-2">
-          <a href="#" class="text-dark">
+          <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="6" class="text-dark">
             <div class="info-box callout callout-danger">
               <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -38,7 +38,7 @@
 
 
       <div class="col-12 col-sm-6 col-md-2">
-        <a class="text-dark">
+        <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="1" class="text-dark">
           <div class="info-box callout callout-danger">
             <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -55,7 +55,7 @@
       </div>
 
       <div class="col-12 col-sm-6 col-md-2">
-        <a class="text-dark">
+        <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="2" class="text-dark">
           <div class="info-box callout callout-danger">
             <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -72,7 +72,7 @@
       </div>
 
       <div class="col-12 col-sm-6 col-md-2">
-        <a class="text-dark">
+        <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="3" class="text-dark">
           <div class="info-box callout callout-danger">
             <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -89,7 +89,7 @@
       </div>
 
       <div class="col-12 col-sm-6 col-md-2">
-        <a class="text-dark">
+        <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="4" class="text-dark">
           <div class="info-box callout callout-danger">
             <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -106,7 +106,7 @@
       </div>
 
       <div class="col-12 col-sm-6 col-md-2">
-        <a class="text-dark">
+        <a asp-controller="humanresource" asp-action="now_overtime" asp-route-overtimeID="5" class="text-dark">
           <div class="info-box callout callout-danger">
             <span class="info-box-icon elevation-1"><i class="fa-solid fa-bus"></i></span>
 
@@ -134,28 +134,28 @@
   <div class="card-body">
     <div class="row">
       <div class="col-3 float-left">
-        <a href="#">
+        <a asp-controller="HumanResource" asp-action="next_week_shift" asp-route-shiftId = "6">
           <div class="btn btn-xs btn-outline-primary w-100">
             <strong><i class="fa-solid fa-clock fa-fade mr-2"></i> 00:00 - 08:00</strong>
           </div>
         </a>
       </div>
       <div class="col-3 float-left">
-        <a href="#">
+        <a asp-controller="HumanResource" asp-action="next_week_shift" asp-route-shiftId = "1">
           <div class="btn btn-xs btn-outline-primary w-100">
             <strong><i class="fa-solid fa-clock fa-fade mr-2"></i> 08:00 - 16:00</strong>
           </div>
         </a>
       </div>
       <div class="col-3 float-left">
-        <a href="#">
+        <a asp-controller="HumanResource" asp-action="next_week_shift" asp-route-shiftId = "2">
           <div class="btn btn-xs btn-outline-primary w-100">
             <strong><i class="fa-solid fa-clock fa-fade mr-2"></i> 08:00 - 18:00</strong>
           </div>
         </a>
       </div>
       <div class="col-3 float-left">
-        <a href="#">
+        <a asp-controller="HumanResource" asp-action="next_week_shift" asp-route-shiftId = "5">
           <div class="btn btn-xs btn-outline-primary w-100">
             <strong><i class="fa-solid fa-clock fa-fade mr-2"></i> 16:00 - 24:00</strong>
           </div>
@@ -192,7 +192,7 @@
         @{
           int count = 1;
 
-          @foreach (var item in Model)
+          @foreach (var item in Model.GetAllHRPersonelDetailDto)
           {
             <tr>
               <td>@count</td>
